@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 void main() {
   runApp(const Something());
@@ -31,6 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final assetsAudioPlayer = AssetsAudioPlayer();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,22 +41,49 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            GestureDetector(
+              onTap: () {
+                AssetsAudioPlayer.newPlayer().open(
+                  Audio("assets/laser.wav"),
+                  showNotification: true,
+                );
+              },
+              child: Container(
+                  width: 190.0,
+                  height: 190.0,
+                  decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: new DecorationImage(
+                          fit: BoxFit.fill,
+                          image: new NetworkImage(
+                              "https://i.imgur.com/BoN9kdC.png")))),
+            ),
+            GestureDetector(
+              onTap: () {
+                AssetsAudioPlayer.newPlayer().open(
+                  Audio("assets/gamma.wav"),
+                  showNotification: true,
+                );
+              },
+              child: Container(
                 width: 190.0,
                 height: 190.0,
                 decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new NetworkImage(
-                            "https://i.imgur.com/BoN9kdC.png")))),
+                  color: Colors.grey[300],
+                  shape: BoxShape.circle,
+                  image: new DecorationImage(
+                    fit: BoxFit.fill,
+                    image: new AssetImage("assets/4.png"),
+                  ),
+                ),
+              ),
+            ),
             Container(
               height: 60,
             ),
             Container(
               margin: EdgeInsets.all(5),
-              padding: EdgeInsets.all(15),
-              color: Colors.lightBlue,
+
               // width: 40,
               // height: 40,
               child: Text(
